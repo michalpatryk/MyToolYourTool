@@ -1,5 +1,22 @@
+import React from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+
+function divExample()	{
+  return(
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="nie  działa"/>
+      </header>
+    </div>
+  )
+}
+function toolBar(){
+  // return(
+    
+  // )
+}
 
 function App() {
   return (
@@ -18,7 +35,9 @@ function App() {
           Learn React
         </a>
       </header>
+	  {divExample()}
     </div>
+	
   );
 }
 
