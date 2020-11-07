@@ -9,7 +9,7 @@ import {
   Home, 
   Login,
 } from '../../views'
-
+import { AnimatedSwitch } from 'react-router-transition'
 const AppRoutes = () => {
 	return (
     <div>
@@ -28,8 +28,14 @@ const AppRoutes = () => {
       </nav>
 
       {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-      <Switch>
+            renders the first one that matches the current URL. */
+            /*Animated switch to switch, ale dodaje jeszcze fajna animacje.
+            W razie czego, można go bardzo łatwo usunąć */}
+      <AnimatedSwitch
+      atEnter={{ opacity: 0 }}
+      atLeave={{ opacity: 0 }}
+      atActive={{ opacity: 1 }}
+      className="route-wrapper">
         <Route path="/login">
           <Login/>
           
@@ -40,7 +46,7 @@ const AppRoutes = () => {
         <Route path="/">
           <Home/>
         </Route>
-      </Switch>
+      </AnimatedSwitch>
     </div>
 	);
 }
