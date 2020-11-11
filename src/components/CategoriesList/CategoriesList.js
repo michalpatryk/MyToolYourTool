@@ -18,7 +18,18 @@ export default class CategoriesList extends React.Component {
             () => {
                 const categories = [{name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10}, 
                                     {name:"test2", link:"https://www.youtube.com/watch?v=GGUF0gqQnek", count:11}, 
-                                    {name:"test3", link:"https://www.reddit.com/r/kde/comments/f8dud0/how_to_disable_copy_on_select/", count:12}];
+                                    {name:"test3", link:"https://www.reddit.com/r/kde/comments/f8dud0/how_to_disable_copy_on_select/", count:12},
+                                    {name:"test4", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test5", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
+                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10}];
                 this.setState({categories});
             })
     }
@@ -27,9 +38,11 @@ export default class CategoriesList extends React.Component {
         return (
             <Grid container spacing={0.2} justify="center">
             {this.state.categories.map(category => 
-               <Grid item xs={2} >
-                  <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
-               </Grid>
+                <Grid item xs={2} >
+                    <a href={category.link}>
+                        <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
+                    </a>
+                </Grid>
                 )}
             </Grid>
         )
