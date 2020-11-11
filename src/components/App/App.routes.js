@@ -10,6 +10,7 @@ import {
   Login,
 } from '../../views'
 import { AnimatedSwitch } from 'react-router-transition'
+import CategoriesList from './../CategoriesList'
 const AppRoutes = () => {
 	return (
     <div>
@@ -23,6 +24,9 @@ const AppRoutes = () => {
           </li>
           <li>
             <Link to="/users">Users</Link>
+          </li>
+          <li>
+            <Link to="/categories">Categories</Link>
           </li>
         </ul>
       </nav>
@@ -43,9 +47,13 @@ const AppRoutes = () => {
         <Route path="/users">
           <h2> test </h2>
         </Route>
+        <Route path="/categories">
+            <CategoriesList />
+        </Route>
         <Route path="/">
           <Home/>
         </Route>
+        
       </AnimatedSwitch>
     </div>
 	);
