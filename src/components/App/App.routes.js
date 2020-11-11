@@ -9,6 +9,19 @@ import {
   Home, 
   Login,
 } from '../../views'
+import {
+  IndexPage,
+  CategoryPage,
+  MyAccountPage,
+  SignUpPage,
+  SignInPage
+} from '../../pages'
+//import IndexPage from './pages/Index.js';
+//import CategoryPage from './../../pages/Category.js';
+//import MyaccountPage from './pages/Myaccount.js';
+//import SignupPage from './pages/Signup.js';
+//import SigninPage from './pages/Signin.js';
+
 import { AnimatedSwitch } from 'react-router-transition'
 import CategoriesList from './../CategoriesList'
 const AppRoutes = () => {
@@ -20,7 +33,7 @@ const AppRoutes = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/signin">Login</Link>
           </li>
           <li>
             <Link to="/users">Users</Link>
@@ -40,18 +53,24 @@ const AppRoutes = () => {
       atLeave={{ opacity: 0 }}
       atActive={{ opacity: 1 }}
       className="route-wrapper">
-        <Route path="/login">
-          <Login/>
-          
+        <Route path="/signin">
+          <SignInPage/>
         </Route>
-        <Route path="/users">
-          <h2> test </h2>
+        
+        <Route path="/signup">
+          <SignUpPage/>
         </Route>
+
+        <Route path="/account">
+          <MyAccountPage/>
+        </Route>
+
         <Route path="/categories">
-            <CategoriesList />
+          <CategoryPage/>
         </Route>
+
         <Route path="/">
-          <Home/>
+          <IndexPage/>
         </Route>
         
       </AnimatedSwitch>
