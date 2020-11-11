@@ -25,15 +25,13 @@ export default class CategoriesList extends React.Component {
 
     render() {
         return (
-            <div>
-                <Grid container spacing={0.2} justify="center">
-                {this.state.categories.map(category => 
-                    <Grid item xs={2} >
-                        <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
-                    </Grid>
-                    )}
-                </Grid>
-            </div>
+            <Grid container spacing={0.2} justify="center">
+            {this.state.categories.map(category => 
+               <Grid item xs={2} >
+                  <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
+               </Grid>
+                )}
+            </Grid>
         )
     }
 }
