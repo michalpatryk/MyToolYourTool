@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+import Tile1 from '../../components/headers/Tile1';
+import Grid from '@material-ui/core/Grid';
+
 export default class CategoriesList extends React.Component {
     state = {
         categories: []
@@ -22,9 +25,15 @@ export default class CategoriesList extends React.Component {
 
     render() {
         return (
-            <ul>
-                {this.state.categories.map(category => <li><a href={category.link}>{category.name} ({category.count})</a></li>)}
-            </ul>
+            <div>
+                <Grid container spacing={0.2} justify="center">
+                {this.state.categories.map(category => 
+                    <Grid item xs={2} >
+                        <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
+                    </Grid>
+                    )}
+                </Grid>
+            </div>
         )
     }
 }
