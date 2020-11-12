@@ -1,14 +1,7 @@
 import React from 'react'
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import { 
-  Home, 
-  Login,
-} from '../../views'
 import {
   IndexPage,
   CategoryPage,
@@ -23,27 +16,9 @@ import {
 //import SigninPage from './pages/Signin.js';
 
 import { AnimatedSwitch } from 'react-router-transition'
-import CategoriesList from './../CategoriesList'
 const AppRoutes = () => {
 	return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/signin">Login</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-          <li>
-            <Link to="/categories">Categories</Link>
-          </li>
-        </ul>
-      </nav>
-
       {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */
             /*Animated switch to switch, ale dodaje jeszcze fajna animacje.

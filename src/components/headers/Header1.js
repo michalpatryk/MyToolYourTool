@@ -5,6 +5,10 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import {
+  Link as RouterLink
+} from "react-router-dom";
+
  const useStyles = makeStyles((theme) => ({
    primaryAction: {
      marginRight: theme.spacing(2),
@@ -39,8 +43,8 @@ export default function Header(props) {
           <Typography variant="h3" component="h2" gutterBottom={true}>{content['header']}</Typography>
           <Typography variant="h5" color="#00897B" paragraph={true}>{content['description']}</Typography>
           <Box mt={4}>
-            <Button variant="contained" color="primary"  size="large" href="/signup" className={classes.primaryAction}>{content['primary-action']} </Button>
-            <Button variant="contained" color="secondary" size="large" href="/categories" className={classes.primaryAction}>{content['secondary-action']}</Button>
+            <Button variant="contained" color="primary"  size="large" component={RouterLink} to="/signup" className={classes.primaryAction}>{content['primary-action']} </Button>
+            <Button variant="contained" color="secondary" size="large" component={RouterLink} to="/categories" className={classes.primaryAction}>{content['secondary-action']}</Button>
           </Box>
         </Box>
       </Container>
