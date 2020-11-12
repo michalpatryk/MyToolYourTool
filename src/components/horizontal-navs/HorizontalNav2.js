@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link as RouterLink
+} from "react-router-dom";
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -87,9 +91,9 @@ export default function Navigation(props) {
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="divider" noWrap className={classes.toolbarTitle}> 
           </Typography>
-          <Button color="divider" size="large" href="/" className={classes.link} component="h2">{content['link1']} </Button>
-          <Button color="divider" size="large" href="/category" className={classes.link} component="h2">{content['link2']} </Button>
-          <Button color="divider" variant="contained" size="large" href="/signup"className={classes.link} component="h2">{content['link3']} </Button>
+          <Button color="divider" size="large" to="/" className={classes.link} component={RouterLink}> {content['link1']} </Button>
+          <Button color="divider" size="large" to="/categories" className={classes.link} component={RouterLink}> {content['link2']} </Button>
+          <Button color="divider" variant="contained" size="large" to="/signup" className={classes.link} component={RouterLink}> {content['link3']} </Button>
         </Toolbar>
       </AppBar>
       </React.Fragment>

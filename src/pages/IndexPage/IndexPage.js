@@ -11,7 +11,7 @@ export default function IndexPage() {
         content={{
           brand: {
             text: ' ',
-            image: 'mui\src\components\headers\pobrane.jpg',
+            image: 'mui/src/components/headers/pobrane.jpg',
             width: '120',
           },
           'link1': 'Home',

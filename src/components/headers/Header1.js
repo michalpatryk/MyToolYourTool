@@ -40,7 +40,7 @@ export default function Header(props) {
           <Typography variant="h5" color="#00897B" paragraph={true}>{content['description']}</Typography>
           <Box mt={4}>
             <Button variant="contained" color="primary"  size="large" href="/signup" className={classes.primaryAction}>{content['primary-action']} </Button>
-            <Button variant="contained" color="secondary" size="large" href="/category" className={classes.primaryAction}>{content['secondary-action']}</Button>
+            <Button variant="contained" color="secondary" size="large" href="/categories" className={classes.primaryAction}>{content['secondary-action']}</Button>
           </Box>
         </Box>
       </Container>
