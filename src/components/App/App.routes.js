@@ -7,7 +7,8 @@ import {
   CategoryPage,
   MyAccountPage,
   SignUpPage,
-  SignInPage
+  SignInPage,
+  ItemListPage
 } from '../../pages'
 import Store from './App.store'
 
@@ -39,6 +40,10 @@ const AppRoutes = () => {
 
         <Route path="/categories">
           <CategoryPage/>
+        </Route>
+
+        <Route path="/items">
+          <ItemListPage />
         </Route>
 
         <Route path="/">
