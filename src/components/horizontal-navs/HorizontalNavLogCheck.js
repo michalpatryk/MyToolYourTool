@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Store from '../App/App.store'
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -68,6 +69,10 @@ export default function Navigation(props) {
     ...props.content
   };
 
+  //
+  const store = Store.useStore()
+  const isLogged = store.get("authToken")
+  //this.store.get("authToken")
   let brand = content['brand'].text || '';
   if (content['brand'].image) {
     brand = <img src={ content['brand'].image } alt="" width={ content['brand'].width } />;
@@ -92,8 +97,15 @@ export default function Navigation(props) {
           <Typography variant="h6" color="divider" noWrap className={classes.toolbarTitle}> 
           </Typography>
           <Button color="divider" size="large" to="/" className={classes.link} component={RouterLink}> {content['link1']} </Button>
-          <Button color="divider" size="large" to="/categories" className={classes.link} component={RouterLink}> {content['link2']} </Button>
-          <Button color="divider" variant="contained" size="large" to="/signin" className={classes.link} component={RouterLink}> {"signin"} </Button>
+          <Button color="divider" size="large" to="/categories" className={classes.link} component={RouterLink}> {content['link2']} </Button>        
+          { 
+            <Button color="divider" variant="contained" size="large" to=
+            {isLogged == '' ?  "/signup": "/account"} className={classes.link} component={RouterLink}> 
+            {isLogged == '' ? "SignUp" : "Account"} 
+          </Button>
+          } 
+          
+          
         </Toolbar>
       </AppBar>
       </React.Fragment>
@@ -126,7 +138,7 @@ export default function Navigation(props) {
 // import AccountBoxIcon from '@material-ui/icons/AccountBox';
 // import CollectionsIcon from '@material-ui/icons/Collections';
 
-{/* <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+/*{ <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
     <Toolbar className={classes.toolbar}>
       
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
@@ -166,4 +178,4 @@ export default function Navigation(props) {
           </List>
         </div>
       </Drawer>
-    </AppBar> */}
+    </AppBar> }*/

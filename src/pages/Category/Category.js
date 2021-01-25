@@ -2,13 +2,13 @@ import React from 'react';
 
 import Header2 from '../../components/headers/Header2.js';
 import HorizontalNav2 from '../../components/horizontal-navs/HorizontalNav2';
-
+import HorizontalNavLogCheck from '../../components/horizontal-navs/HorizontalNavLogCheck';
 import CategoriesList from '../../components/CategoriesList'
 
 export default function Category() {
   return (
     <React.Fragment>
-       <HorizontalNav2
+       <HorizontalNavLogCheck
         content={{
           brand: {
             text: ' ',

@@ -1,13 +1,14 @@
 import React from 'react';
 
 import HorizontalNav2 from '../../components/horizontal-navs/HorizontalNav2';
+import HorizontalNavLogCheck from '../../components/horizontal-navs/HorizontalNavLogCheck';
 import Header1 from '../../components/headers/Header1';
 import Features2 from '../../components/features/Features2';
 
 export default function IndexPage() {
   return (
     <React.Fragment>
-      <HorizontalNav2
+      <HorizontalNavLogCheck
         content={{
           brand: {
             text: ' ',

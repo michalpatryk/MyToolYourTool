@@ -9,14 +9,11 @@ import {
   SignUpPage,
   SignInPage
 } from '../../pages'
-//import IndexPage from './pages/Index.js';
-//import CategoryPage from './../../pages/Category.js';
-//import MyaccountPage from './pages/Myaccount.js';
-//import SignupPage from './pages/Signup.js';
-//import SigninPage from './pages/Signin.js';
+import Store from './App.store'
 
 import { AnimatedSwitch } from 'react-router-transition'
 const AppRoutes = () => {
+  const store = Store.useStore()
 	return (
     <div>
       {/* A <Switch> looks through its children <Route>s and
