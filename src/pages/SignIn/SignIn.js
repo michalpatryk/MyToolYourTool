@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Store from '../../components/App/App.store'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -35,7 +37,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInPage() {
   const classes = useStyles();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
+  const store = Store.useStore()
+
+  async function handleSignIn(){
+    axios.post('https://my-tool-your-tool-dev.herokuapp.com/users/login',
+    {email: email,
+    password: password})
+    .then(res => {
+      let data = res.data;
+      console.log("Success");
+      store.set('authToken')(res.data)
+      console.log(store.get('authToken'))
+
+    },
+    console.log("Failure"))
+  }
   return (
     <React.Fragment>
     <HorizontalNavLogCheck
@@ -70,6 +89,7 @@ export default function SignInPage() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={e => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -81,13 +101,16 @@ export default function SignInPage() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="secondary" />}
             label="Remember me"
           />
           <Button
-            type="submit"
+            onClick={handleSignIn}
+            //type="submit"
+            
             fullWidth
             variant="contained"
             color="secondary"

@@ -13,7 +13,6 @@ import Store from './App.store'
 
 import { AnimatedSwitch } from 'react-router-transition'
 const AppRoutes = () => {
-  const store = Store.useStore()
 	return (
     <div>
       {/* A <Switch> looks through its children <Route>s and
