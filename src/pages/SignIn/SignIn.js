@@ -50,6 +50,7 @@ export default function SignInPage() {
       let data = res.data;
       console.log("Success");
       store.set('authToken')(res.data)
+      axios.defaults.headers.common['Authorization'] = res.data;
       console.log(store.get('authToken'))
 
     },
