@@ -1,6 +1,7 @@
 
+import React, { useState } from 'react';
 import HorizontalNav2 from '../../components/horizontal-navs/HorizontalNav2';
-import React from 'react';
+//import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     
     paper: {
@@ -40,8 +41,27 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Index() {
+  
   const classes = useStyles();
 
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  async function handleSignUp(){
+    axios.post('https://my-tool-your-tool-dev.herokuapp.com/users/signup', 
+      {firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password})
+    .then(res => {
+      console.log("Success")
+      console.log(res.data)
+    },
+    console.log("Failure"))
+
+  }
   return (
     <React.Fragment>
       <HorizontalNav2
@@ -77,6 +97,7 @@ export default function Index() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={e => setFirstName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -88,6 +109,7 @@ export default function Index() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={e => setLastName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,6 +121,7 @@ export default function Index() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={e => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -111,6 +134,7 @@ export default function Index() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={e => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -120,8 +144,17 @@ export default function Index() {
               />
             </Grid>
           </Grid>
-          <Button
+          {/* <Button
             type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>  */}
+          <Button
+            onClick={handleSignUp}
             fullWidth
             variant="contained"
             color="secondary"
@@ -141,5 +174,6 @@ export default function Index() {
     </Container>
  </React.Fragment>
   );
+
 }
 
