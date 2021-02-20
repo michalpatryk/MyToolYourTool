@@ -119,12 +119,6 @@ export default function Myaccount() {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
-  let details = {
-    'name': '123',
-    'surname': 'Kot',
-    'email': 'mmkotek@gmail.com',
-  };
-  const store = Store.useStore()
 
   useEffect(() =>{
     axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/users/me')
@@ -141,8 +135,6 @@ export default function Myaccount() {
     })
   },[])
   
-  
-
   return (
     <div className={classes.root}>
       <CssBaseline />

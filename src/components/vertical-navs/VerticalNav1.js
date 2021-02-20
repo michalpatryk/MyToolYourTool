@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link as RouterLink
+} from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -11,7 +14,13 @@ import RateReview from '@material-ui/icons/RateReview';
 export const VerticalNav1 = (
 
   <div>
-    <ListItem button>
+    <ListItem button to="/" component={RouterLink}>
+      <ListItemIcon>
+        <AccountBox />
+      </ListItemIcon>
+      <ListItemText primary="Homepage" />
+    </ListItem>
+    <ListItem button to="/account" component={RouterLink}>
       <ListItemIcon>
         <AccountBox />
       </ListItemIcon>
