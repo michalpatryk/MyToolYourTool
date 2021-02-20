@@ -1,7 +1,9 @@
 
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import axios from 'axios';
+import Store from '../../components/App/App.store'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,6 +23,7 @@ import Table1 from '../../components/features/Table1';
 import Title1 from '../../components/features/Title1';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import axiosAPI from '../../API/ourAPI/API';
 
 const drawerWidth = 240;
 
@@ -105,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Myaccount() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -113,12 +116,32 @@ export default function Myaccount() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-  const details = {
-    'name': 'Monika',
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  let details = {
+    'name': '123',
     'surname': 'Kot',
     'email': 'mmkotek@gmail.com',
   };
+  const store = Store.useStore()
+
+  useEffect(() =>{
+    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/users/me')
+    .then(res => {
+      setFirstName(res.data.firstName)
+      setLastName(res.data.lastName)
+      setEmail(res.data.email)
+      console.log(res.data)
+    })
+    .catch(error => {
+      setFirstName('Błąd ładowania danych');
+      setLastName('Błąd ładowania danych');
+      setEmail('Błąd ładowania danych');
+    })
+  },[])
+  
+  
 
   return (
     <div className={classes.root}>
@@ -159,9 +182,11 @@ export default function Myaccount() {
               <Paper className={fixedHeightPaper}>
               <Title1>My account details</Title1>
               <br></br>
-              <Typography variant="subtitle1" gutterBottom={true}> Name : {details['name']}</Typography>
-              <Typography variant="subtitle1" gutterBottom={true}> Surname : {details['surname']}</Typography>
-              <Typography variant="subtitle1" gutterBottom={true}> Email : {details['email']}</Typography>
+              {/* <Typography variant="subtitle1" gutterBottom={true}> Name : {details['name']}</Typography> */}
+
+              <Typography variant="subtitle1" gutterBottom={true}> Name : {firstName}</Typography>
+              <Typography variant="subtitle1" gutterBottom={true}> Surname : {lastName}</Typography>
+              <Typography variant="subtitle1" gutterBottom={true}> Email : {email}</Typography>
      
               <br></br>
               <Grid container spacing={3}>

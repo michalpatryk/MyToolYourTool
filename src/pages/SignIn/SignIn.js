@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import HorizontalNavLogCheck from '../../components/horizontal-navs/HorizontalNavLogCheck';
+import axiosAPI from '../../API/ourAPI/API';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,9 +51,14 @@ export default function SignInPage() {
       let data = res.data;
       console.log("Success");
       store.set('authToken')(res.data)
-      axios.defaults.headers.common['Authorization'] = res.data;
-      console.log(store.get('authToken'))
-
+      //axios.defaults.headers.common['Authorization'] = res.data;  //dziala
+      //axios.defaults.headers.common['Authorization'] = store.get('authToken') //nie dziala
+      axiosAPI.defaults.headers.common['Authorization'] = res.data;
+      // axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/users/me')
+      // .then(res => {
+      //   console.log(res.data)
+      // })
+      // console.log(store.get('authToken'))
     },
     console.log("Failure"))
   }
