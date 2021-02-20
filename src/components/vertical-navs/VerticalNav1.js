@@ -8,6 +8,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountBox from '@material-ui/icons/AccountBox';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Store from '@material-ui/icons/Store';
+import AppsIcon from '@material-ui/icons/Apps';
+import HistoryIcon from '@material-ui/icons/History';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import RateReview from '@material-ui/icons/RateReview';
 
 
@@ -26,6 +29,12 @@ export const VerticalNav1 = (
       </ListItemIcon>
       <ListItemText primary="My Account" />
     </ListItem>
+    <ListItem button to="/account/myOffers" component={RouterLink}>
+      <ListItemIcon>
+        <AppsIcon />
+      </ListItemIcon>
+      <ListItemText primary="My offers " />
+    </ListItem>
     <ListItem button>
       <ListItemIcon>
         <Store />
@@ -40,9 +49,15 @@ export const VerticalNav1 = (
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <RateReview />
+        <HistoryIcon />
       </ListItemIcon>
-      <ListItemText primary="Rate review" />
+      <ListItemText primary="History" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="Log out" />
     </ListItem>
   </div>
 )

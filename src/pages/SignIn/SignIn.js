@@ -44,7 +44,7 @@ export default function SignInPage() {
   const store = Store.useStore()
 
   async function handleSignIn(){
-    axios.post('https://my-tool-your-tool-dev.herokuapp.com/users/login',
+    await axios.post('https://my-tool-your-tool-dev.herokuapp.com/users/login',
     {email: email,
     password: password})
     .then(res => {
@@ -54,11 +54,6 @@ export default function SignInPage() {
       //axios.defaults.headers.common['Authorization'] = res.data;  //dziala
       //axios.defaults.headers.common['Authorization'] = store.get('authToken') //nie dziala
       axiosAPI.defaults.headers.common['Authorization'] = res.data;
-      // axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/users/me')
-      // .then(res => {
-      //   console.log(res.data)
-      // })
-      // console.log(store.get('authToken'))
     },
     console.log("Failure"))
   }
