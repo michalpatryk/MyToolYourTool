@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosAPI from 'axios';
+import axiosAPI from '../../API/ourAPI/API'
 import {Link} from 'react-router-dom';
 
 import Tile1 from '../../components/headers/Tile1';
