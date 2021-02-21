@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosAPI from 'axios';
+import axiosAPI from '../../API/ourAPI/API'
 import {Link} from "react-router-dom";
 
 import Tile1 from '../../components/headers/Tile1';
@@ -12,9 +12,12 @@ export default class CategoriesList extends React.Component {
 
     componentDidMount() {
         axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
+        //axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/reservations')
             .then(res => {
+                //console.log(categories)
                 const categories = res.data;
                 this.setState({categories});
+                
             },
             () => {
                 const categories = [{name:"test1", id:0, count:10}, 
@@ -32,6 +35,7 @@ export default class CategoriesList extends React.Component {
                                     {name:"test1", id:12, count:10},
                                     {name:"test1", id:13, count:10}];
                 this.setState({categories});
+                console.log(categories)
             })
     }
 
