@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import axiosAPI from 'axios';
+import {Link} from "react-router-dom";
 
 import Tile1 from '../../components/headers/Tile1';
 import Grid from '@material-ui/core/Grid';
@@ -10,26 +11,26 @@ export default class CategoriesList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/categories')
+        axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
             .then(res => {
                 const categories = res.data;
                 this.setState({categories});
             },
             () => {
-                const categories = [{name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10}, 
-                                    {name:"test2", link:"https://www.youtube.com/watch?v=GGUF0gqQnek", count:11}, 
-                                    {name:"test3", link:"https://www.reddit.com/r/kde/comments/f8dud0/how_to_disable_copy_on_select/", count:12},
-                                    {name:"test4", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test5", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10},
-                                    {name:"test1", link:"https://db.zmitac.aei.polsl.pl", count:10}];
+                const categories = [{name:"test1", id:0, count:10}, 
+                                    {name:"test2", id:1, count:11}, 
+                                    {name:"test3", id:2, count:12},
+                                    {name:"test4", id:3, count:10},
+                                    {name:"test5", id:4, count:10},
+                                    {name:"test", id:5, count:10},
+                                    {name:"test1", id:6, count:10},
+                                    {name:"test1", id:7, count:10},
+                                    {name:"test1", id:8, count:10},
+                                    {name:"test1", id:9, count:10},
+                                    {name:"test1", id:10, count:10},
+                                    {name:"test1", id:11, count:10},
+                                    {name:"test1", id:12, count:10},
+                                    {name:"test1", id:13, count:10}];
                 this.setState({categories});
             })
     }
@@ -39,9 +40,9 @@ export default class CategoriesList extends React.Component {
             <Grid container spacing={0.2} justify="center">
             {this.state.categories.map(category => 
                 <Grid item xs={2} >
-                    <a href={category.link}>
+                    <Link to={'/items?category='+category.id}>
                         <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
-                    </a>
+                    </Link>
                 </Grid>
                 )}
             </Grid>
