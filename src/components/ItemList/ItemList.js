@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axiosAPI from 'axios';
 
 import Tile1 from '../../components/headers/Tile1';
 import Grid from '@material-ui/core/Grid';
@@ -11,7 +11,7 @@ export default class ItemList extends React.Component {
 
     componentDidMount() {
         const requestUrl = 'https://my-tool-your-tool-dev.herokuapp.com/categories/'+this.props.category;
-        axios.get(requestUrl)
+        axiosAPI.get(requestUrl)
             .then(res => {
                 const items = res.data;
                 this.setState({items});

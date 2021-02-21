@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axiosAPI from 'axios';
 
 import Tile1 from '../../components/headers/Tile1';
 import Grid from '@material-ui/core/Grid';
@@ -10,7 +10,7 @@ export default class CategoriesList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
+        axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
             .then(res => {
                 const categories = res.data;
                 this.setState({categories});
@@ -39,7 +39,7 @@ export default class CategoriesList extends React.Component {
             <Grid container spacing={0.2} justify="center">
             {this.state.categories.map(category => 
                 <Grid item xs={2} >
-                    <a href={'https://my-tool-your-tool-dev.herokuapp.com/categories/'+category.id}>
+                    <a href={'/items?category='+category.id}>
                         <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
                     </a>
                 </Grid>
