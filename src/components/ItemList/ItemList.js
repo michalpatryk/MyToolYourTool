@@ -1,5 +1,6 @@
 import React from 'react';
 import axiosAPI from 'axios';
+import {Link} from 'react-router-dom';
 
 import Tile1 from '../../components/headers/Tile1';
 import Grid from '@material-ui/core/Grid';
@@ -40,9 +41,9 @@ export default class ItemList extends React.Component {
             <Grid container spacing={0.2} justify="center">
             {this.state.items.map(item => 
                 <Grid item xs={2} >
-                    <a href={'https://my-tool-your-tool-dev.herokuapp.com/offers/'+item.id}>
-                        <Tile1 content={ { 'name':item.toolName, 'amount':item.toolQuality } } />
-                    </a>
+                    <Link to={'/offers/'+item.id}>
+                        <Tile1 content={ { 'name':item.toolName, 'amount':item.toolQuality } }/>
+                    </Link>
                 </Grid>
                 )}
             </Grid>

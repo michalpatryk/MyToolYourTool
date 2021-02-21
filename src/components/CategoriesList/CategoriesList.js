@@ -1,5 +1,6 @@
 import React from 'react';
 import axiosAPI from 'axios';
+import {Link} from "react-router-dom";
 
 import Tile1 from '../../components/headers/Tile1';
 import Grid from '@material-ui/core/Grid';
@@ -39,9 +40,9 @@ export default class CategoriesList extends React.Component {
             <Grid container spacing={0.2} justify="center">
             {this.state.categories.map(category => 
                 <Grid item xs={2} >
-                    <a href={'/items?category='+category.id}>
+                    <Link to={'/items?category='+category.id}>
                         <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
-                    </a>
+                    </Link>
                 </Grid>
                 )}
             </Grid>
