@@ -41,7 +41,7 @@ export default class CategoriesList extends React.Component {
             {this.state.categories.map(category => 
                 <Grid item xs={2} >
                     <Link to={'/items?category='+category.id}>
-                        <Tile1 content={ { 'name':category.name,'amount':category.count, } } />
+                        <Tile1 content={ { 'name':category.name,'amount':category.count } } />
                     </Link>
                 </Grid>
                 )}
