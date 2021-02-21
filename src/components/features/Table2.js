@@ -1,5 +1,5 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosAPI from '../../API/ourAPI/API';
 import PropTypes from 'prop-types';
 import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -99,7 +99,9 @@ TablePaginationActions.propTypes = {
 function createData( offer,link,status) {
     return {offer,link, status };
   }
-  
+  function createOffer(toolName, description, toolQuality){
+    return {toolName, description, toolQuality};
+  }
   const rows = [
     createData('Łopata XXL','https://inpost.pl/wysylam', 'Borrowed',),
     createData('Szpadel zielony','http://db.zmitac.aei.polsl.pl/', 'Free'),
@@ -112,10 +114,14 @@ function createData( offer,link,status) {
   });
 
 export default function CustomPaginationActionsTable() {
+  
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  const [items, setItems] = React.useState([]);
+  // const items = [
+  //   createOffer('jeden', 'dwa', 'trzy'),
+  // ];
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
@@ -126,7 +132,15 @@ export default function CustomPaginationActionsTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  useEffect(() =>{
+    axiosAPI.post('https://my-tool-your-tool-dev.herokuapp.com/offers/myoffers')
+    .then(res => {
+      setItems(items.concat(res.data))
+      console.log(items)
+    })
+    .catch(error => {
+    })
+  },[])
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
@@ -135,17 +149,19 @@ export default function CustomPaginationActionsTable() {
             <StyledTableCell>Offer</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">Status</StyledTableCell>
+            <StyledTableCell align="right">Quality</StyledTableCell>
           </TableRow>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <StyledTableRow key={row.name}>
-            <TableCell numeric component="a" href={row ['link']}>{row.offer}</TableCell>
-            <TableCell numeric component="a"  align="right" href={row ['link']}>Edit</TableCell>
-            <TableCell numeric component="a"  align="right" href={row ['link']}>Delete</TableCell>
-            <TableCell style={{ width: 160 }} align="right"> {row.status} </TableCell>
+            // ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            // : rows
+            ? items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+             : items
+          ).map((item) => (
+            <StyledTableRow key={item.name}>
+            <TableCell numeric component="a" href={item ['link']}>{item.toolName}</TableCell>
+            <TableCell numeric component="a"  align="right" href={item ['link']}>Edit</TableCell>
+            <TableCell numeric component="a"  align="right" href={item ['link']}>Delete</TableCell>
+            <TableCell style={{ width: 160 }} align="right"> {item.toolQuality} </TableCell>
             </StyledTableRow>
           ))}
           {emptyRows > 0 && (
