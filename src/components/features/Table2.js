@@ -135,7 +135,7 @@ export default function CustomPaginationActionsTable() {
   useEffect(() =>{
     axiosAPI.post('https://my-tool-your-tool-dev.herokuapp.com/offers/myoffers')
     .then(res => {
-      setItems(items.concat(res.data))
+      setItems(res.data)
       console.log(items)
     })
     .catch(error => {
