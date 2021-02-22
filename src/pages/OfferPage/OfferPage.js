@@ -108,13 +108,14 @@ export default function OfferPage() {
           id:0,
           email:'test@test.test',
           firstName:'tester',
-          lastName:'testerino',
+          lastName:'testerino'
         }
       }
   }
 
-  )
+  );
 
+  const login = offer.lender.firstName + ' ' + offer.lender.lastName;
   return (
     
     <React.Fragment>
@@ -154,7 +155,7 @@ export default function OfferPage() {
         </Grid>
         <Grid item xs={4}>
         <Card className={classes.user}>
-        <User content={ {'login':offer.lender.firstName+' '+offer.lender.lastName, 'rate':'3', 'link': 'https://allegro.pl/'}} />
+        <User content={ {'login':login, 'rate':'3', 'link': 'https://allegro.pl/'}} />
         </Card>
         </Grid>
         </Grid>

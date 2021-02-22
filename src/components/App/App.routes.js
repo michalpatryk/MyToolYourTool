@@ -9,7 +9,8 @@ import {
   MyOffersPage,
   SignUpPage,
   SignInPage,
-  ItemListPage
+  ItemListPage,
+  OfferPage
 } from '../../pages'
 import Store from './App.store'
 
