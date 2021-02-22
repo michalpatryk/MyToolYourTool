@@ -94,28 +94,23 @@ export default function OfferPage() {
 
   var offer
 
-  axiosAPI.post(requestUrl)
-  .then(res => {
-    offer = res.data;
-  },
-  () => {
-      offer = {
-        id:0,
-        toolName:'test',
-        description:'test item',
-        toolQuality:'BAD',
-        lender: {
+  axiosAPI.get(requestUrl)
+    .then((response) => {
+        console.log(response.data);
+        offer = response.data;
+     },
+    () => {
+        offer = {
           id:0,
-          email:'test@test.test',
-          firstName:'tester',
-          lastName:'testerino'
+          toolName:'test',
+          description:'test item',
+          toolQuality:'BAD',
         }
-      }
-  }
-
+     }
   );
 
-  const login = offer.lender.firstName + ' ' + offer.lender.lastName;
+  //const login = offer.lender.firstName + ' ' + offer.lender.lastName;
+  const login = 'test';
   return (
     
     <React.Fragment>
