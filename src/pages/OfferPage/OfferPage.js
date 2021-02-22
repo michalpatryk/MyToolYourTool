@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -91,23 +91,26 @@ export default function OfferPage() {
   const { search } = useLocation();
   const queryParams = queryString.parse(search);
   const requestUrl = 'https://my-tool-your-tool-dev.herokuapp.com/offers/'+queryParams.id;
+  const [description, setDescription] = useState();
+  const [toolName, setToolName] = useState();
+  const [toolQuality, setToolQuality] = useState();
+  
 
-  var offer
-
-  axiosAPI.get(requestUrl)
-    .then((response) => {
+  useEffect(() => {
+    axiosAPI.get(requestUrl)
+      .then((response) => {
+        setToolName(response.data.toolName);
+        setToolQuality(response.data.toolQuality);
+        setDescription(response.data.description);
         console.log(response.data);
-        offer = response.data;
-     },
-    () => {
-        offer = {
-          id:0,
-          toolName:'test',
-          description:'test item',
-          toolQuality:'BAD',
-        }
-     }
-  );
+      },
+      () => {
+        setToolName('response.data.toolName');
+        setToolQuality('response.data.toolQuality');
+        setDescription('response.data.description');
+      }
+    );
+  },[]);
 
   //const login = offer.lender.firstName + ' ' + offer.lender.lastName;
   const login = 'test';
@@ -134,7 +137,7 @@ export default function OfferPage() {
         <Grid item xs={6} direction="column" alignItems="center" justify="center" style={{ minHeight: '60vh' }} >
         <CardMedia
         className={classes.media}
-        image="https://www.posprzatajdom.pl/images/FOTKI_SKLEP/KAT00836/kat0836.jpg"
+        image="https://i.imgur.com/jQBC7AP.jpeg"
         title="Object"
          />
          
@@ -145,7 +148,7 @@ export default function OfferPage() {
         <Grid item xs={8}>
             <br></br><br></br>
         <Typography component="h1" variant="h4" align="center">
-             Description of the offer
+             {toolName}
         </Typography>
         </Grid>
         <Grid item xs={4}>
@@ -155,14 +158,14 @@ export default function OfferPage() {
         </Grid>
         </Grid>
           <br></br><br></br>
-         <Form content={ {'name':offer.toolName,'description':offer.description, 'condition':offer.toolQuality}} />
+         <Form content={ {'name':toolName,'description':description, 'condition':toolQuality}} />
          </Grid>
         </Grid>
         <Grid item xs={12}>
         <br></br>
         <FormControlLabel
         control={<Checkbox checked={state.checkedRegulations} onChange={handleChange} name="checkedRegulations" />}
-        label="I have read, understand, and agree to the above rules and regulations."
+        label="I have read, understand, and agree to the rules."
          />
          </Grid>
          <Grid container spacing={3}>
