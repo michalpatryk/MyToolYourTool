@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CategorySelector from './CategorySelector';
+import QualitySelector from './QualitySelector';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,7 +48,7 @@ export default function AddressForm() {
         </Grid>
         <Grid item xs={6}>
         <CategorySelector />
-
+        <QualitySelector />
         </Grid>
         <Grid item xs={6}>
             <br></br><br></br><br></br><br></br><br></br><br></br>
