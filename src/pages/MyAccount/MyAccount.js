@@ -1,8 +1,5 @@
-
-
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import axios from 'axios';
 import Store from '../../components/App/App.store'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

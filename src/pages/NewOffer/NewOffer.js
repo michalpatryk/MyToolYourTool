@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosAPI from '../../API/ourAPI/API';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormToFill from '../../components/__structures/FormToFill';
-import HorizontalNav2 from '../../components/horizontal-navs/HorizontalNav2';
+import HorizontalNavLogCheck from '../../components/horizontal-navs/HorizontalNavLogCheck';
 import ImageUpload from '../../components/__structures/ImageUpload'
 import Grid from '@material-ui/core/Grid';
 
@@ -58,10 +59,21 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
 
+  useEffect(() =>{
+    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
+    .then(res => {
+
+      console.log(res.data)
+    })
+    .catch(error => {
+
+    })
+  },[])
+
   return (
     
     <React.Fragment>
-        <HorizontalNav2
+      <HorizontalNavLogCheck
       content={{
         brand: {
           text: ' ',
@@ -73,6 +85,7 @@ export default function Checkout() {
         'link3': 'Sign in',
       }}
     />
+
       <CssBaseline />
       <main className={classes.layout}>
         <Paper elevation={3} className={classes.paper}>

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Selector from './Selector';
+import CategorySelector from './CategorySelector';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +28,7 @@ export default function AddressForm() {
             required
             id="name"
             name="name"
-            label="Name of the advertisement"
+            label="Name of the offer"
             fullWidth
           />
         </Grid>
@@ -38,7 +38,7 @@ export default function AddressForm() {
             variant="outlined"
             id="description"
             name="description"
-            label="Desription of the item"
+            label="Description of the item"
             multiline
             rows={10}
             rowsMax={10}
@@ -46,7 +46,8 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={6}>
-        <Selector content={ {'label':'Condition','first':'Bad','second':'Satisfactory', 'third':'Good', 'fourth':'Very good'}} />
+        <CategorySelector />
+
         </Grid>
         <Grid item xs={6}>
             <br></br><br></br><br></br><br></br><br></br><br></br>

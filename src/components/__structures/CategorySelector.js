@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosAPI from '../../API/ourAPI/API';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -34,14 +35,22 @@ export default function ControlledOpenSelect(props) {
     setOpen(true);
   };
 
-  const content = {
-    'label':'',
-    'first': '',
-    'second': '',
-    'third': '',
-    'fourth':'',
-    ...props.content
-  };
+  // const content = [
+  //   { id: '0', name: 'Łopaty'},
+  //   { id: '1', name: 'Opiaty'}
+  // ];
+  const [content, setContent] = React.useState([]);
+  useEffect(() =>{
+    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
+    .then(res => {
+      setContent(res.data)
+      //console.log(res.data)
+    })
+    .catch(error => {
+      setContent([
+        { id: '0', name: 'BŁĄD WCZYTYWANIA'}])
+    })
+  },[])
 
   return (
     <div>
@@ -56,13 +65,9 @@ export default function ControlledOpenSelect(props) {
           value={val}
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={0}>{content['first']}</MenuItem>
-          <MenuItem value={1}>{content['second']}</MenuItem>
-          <MenuItem value={2}>{content['third']}</MenuItem>
-          <MenuItem value={3}>{content['fourth']}</MenuItem>
+          {content.map((e, key) => {
+              return <MenuItem key={key} value={e.id}>{e.name}</MenuItem>;
+          })}
         </Select>
       </FormControl>
     </div>
