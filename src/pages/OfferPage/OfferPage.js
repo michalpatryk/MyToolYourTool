@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Form from '../components/__structures/Form';
-import HorizontalNav2 from '../components/horizontal-navs/HorizontalNav2';
-import User from '../components/features/User';
+import Form from '../../components/__structures/Form';
+import HorizontalNavLogCheck from '../../components/horizontal-navs/HorizontalNavLogCheck';
+import User from '../../components/features/User';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 
 import { useLocation } from 'react-router-dom';
 import axiosAPI from '../../API/ourAPI/API';
+import queryString from 'query-string';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Checkout() {
+export default function OfferPage() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -89,9 +90,9 @@ export default function Checkout() {
 
   const { search } = useLocation();
   const queryParams = queryString.parse(search);
-  const requestUrl = 'https://my-tool-your-tool-dev.herokuapp.com/categories/'+queryParams.id;
+  const requestUrl = 'https://my-tool-your-tool-dev.herokuapp.com/offers/'+queryParams.id;
 
-  const offer;
+  var offer
 
   axiosAPI.post(requestUrl)
   .then(res => {
@@ -153,12 +154,12 @@ export default function Checkout() {
         </Grid>
         <Grid item xs={4}>
         <Card className={classes.user}>
-        <User content={ {'login':'piwo342', 'rate':'3', 'link': 'https://allegro.pl/'}} />
+        <User content={ {'login':offer.lender.firstName+' '+offer.lender.lastName, 'rate':'3', 'link': 'https://allegro.pl/'}} />
         </Card>
         </Grid>
         </Grid>
           <br></br><br></br>
-         <Form content={ {'name':'Łopata','description':'Dobra,sprawna super łopata', 'condition':'Bad'}} />
+         <Form content={ {'name':offer.toolName,'description':offer.description, 'condition':offer.toolQuality}} />
          </Grid>
         </Grid>
         <Grid item xs={12}>
