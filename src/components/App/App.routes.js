@@ -9,11 +9,13 @@ import {
   MyOffersPage,
   SignUpPage,
   SignInPage,
-  ItemListPage
+  ItemListPage,
+  OfferPage
 } from '../../pages'
 import Store from './App.store'
 
 import { AnimatedSwitch } from 'react-router-transition'
+import OfferPage from '../../pages/OfferPage';
 const AppRoutes = () => {
 	return (
     <div>
@@ -48,6 +50,10 @@ const AppRoutes = () => {
 
         <Route path="/items">
           <ItemListPage />
+        </Route>
+
+        <Route path="/offer">
+          <OfferPage />
         </Route>
 
         <Route path="/">
