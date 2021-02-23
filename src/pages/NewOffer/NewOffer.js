@@ -58,7 +58,9 @@ export default function Checkout() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
+  function handleSubmit(){
+    console.log('submitting')
+  }
   useEffect(() =>{
     axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
     .then(res => {
@@ -98,7 +100,7 @@ export default function Checkout() {
              Description of the offer
           </Typography>
           <br></br><br></br>
-         <FormToFill></FormToFill>
+         <FormToFill onSubmit={handleSubmit}/>
          </Grid>
         </Grid>
         </Paper>

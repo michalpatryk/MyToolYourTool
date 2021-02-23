@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
 export default function AddressForm() {
     const classes = useStyles();
     const [value, setValue] = React.useState('Controlled');
+
+    function handleSubmit(){
+      console.log('submitting')
+    }
+
   return (
     <form className={classes.root} noValidate autoComplete="off">
     <React.Fragment>
@@ -52,7 +57,7 @@ export default function AddressForm() {
         </Grid>
         <Grid item xs={6}>
             <br></br><br></br><br></br><br></br><br></br><br></br>
-        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary"> Add</Button>
+        <Button  size = 'large' variant = "contained" type="button" fullWidth  color = "primary" onClick={handleSubmit}> Add</Button>
         </Grid>
         </Grid>
     </React.Fragment>
