@@ -7,6 +7,7 @@ import {
   CategoryPage,
   MyAccountPage,
   MyOffersPage,
+  NewOfferPage,
   SignUpPage,
   SignInPage,
   ItemListPage
@@ -33,6 +34,11 @@ const AppRoutes = () => {
         <Route path="/signup">
           <SignUpPage/>
         </Route>
+
+        <Route path="/account/myOffers/newOffer">
+            <NewOfferPage/>
+        </Route>
+
         <Route path="/account/myOffers">
             <MyOffersPage/>
         </Route>

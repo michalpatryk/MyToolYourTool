@@ -2,6 +2,9 @@
 
 import React from 'react';
 import clsx from 'clsx';
+import {
+  Link as RouterLink
+} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -149,7 +152,7 @@ export default function Myaccount() {
             <Grid item xs={9}> 
             </Grid>
             <Grid item xs={3} >
-            <Button type="submit" fullWidth  variant="contained"  color="secondary"  className={classes.submit} > Add new offer </Button> 
+            <Button type="submit" fullWidth  variant="contained"  color="secondary"  className={classes.submit} to='/account/myOffers/newOffer' component={RouterLink}> Add new offer </Button> 
             </Grid>
             </Grid>
 
