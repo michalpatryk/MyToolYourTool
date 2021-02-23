@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useForm } from 'react';
+import React, { useState } from 'react';
 import axiosAPI from '../../API/ourAPI/API';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
   
 export default function AddressForm({ parentCallback }) {
     const classes = useStyles();
-    const [value, setValue] = React.useState('Controlled');
-    //const [form, handleSubmit] = useForm();
     const [name, setName] = useState('123');
     const [description, setDescription] = useState();
     const [itemCategory, setItemCategory] = useState();
