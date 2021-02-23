@@ -94,6 +94,8 @@ export default function OfferPage() {
   const [description, setDescription] = useState();
   const [toolName, setToolName] = useState();
   const [toolQuality, setToolQuality] = useState();
+  const [lendersName, setLendersName] = useState();
+  const [lendersAverageRating, setLendersAverageRating] = useState();
   
 
   useEffect(() => {
@@ -102,18 +104,21 @@ export default function OfferPage() {
         setToolName(response.data.toolName);
         setToolQuality(response.data.toolQuality);
         setDescription(response.data.description);
+        setLendersName(response.data.lendersName);
+        setLendersAverageRating(response.data.lendersAverageRating);
         console.log(response.data);
       },
       () => {
         setToolName('response.data.toolName');
         setToolQuality('response.data.toolQuality');
         setDescription('response.data.description');
+        setLendersName('test user');
+        setLendersAverageRating(0);
       }
     );
   },[]);
 
   //const login = offer.lender.firstName + ' ' + offer.lender.lastName;
-  const login = 'test';
   return (
     
     <React.Fragment>
@@ -153,7 +158,7 @@ export default function OfferPage() {
         </Grid>
         <Grid item xs={4}>
         <Card className={classes.user}>
-        <User content={ {'login':login, 'rate':'3', 'link': 'https://allegro.pl/'}} />
+        <User content={ {'login':lendersName, 'rate':lendersAverageRating, 'link': ''}} />
         </Card>
         </Grid>
         </Grid>
