@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useForm } from 'react';
+import axiosAPI from '../../API/ourAPI/API';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,10 +32,19 @@ export default function AddressForm({ parentCallback }) {
       setItemQuality(value);
     }
     const handleSubmit = data =>{
-      console.log(name)
-      console.log('submittiasdasdnag')
-      console.log(itemCategory)
-      console.log(itemQuality)
+      axiosAPI.post('https://my-tool-your-tool-dev.herokuapp.com/offers/add-offer', 
+      {
+        categoryId: itemCategory,
+        description: description,
+        toolName: name,
+        toolQuality: itemQuality
+      })
+      .then(res => {
+        console.log('Dodano ofertę!')
+      })
+      .catch(err => {
+        console.log(err.value)
+      })
     }
 
   return (

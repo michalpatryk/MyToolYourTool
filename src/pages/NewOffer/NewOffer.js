@@ -91,7 +91,7 @@ export default function Checkout() {
         <Paper elevation={3} className={classes.paper}>
         <Grid container spacing={3}>
         <Grid item xs={6}>
-        <ImageUpload></ImageUpload>
+        <ImageUpload />
          </Grid>
         <Grid item xs={6}>
           <Typography component="h1" variant="h4" align="center">
