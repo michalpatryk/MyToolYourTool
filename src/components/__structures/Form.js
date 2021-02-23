@@ -34,6 +34,9 @@ export default function AddressForm(props) {
             id="name"
             name="name"
             label="Name of the advertisement"
+            multiline
+            rows={1}
+            rowsMax={1}
             fullWidth
             InputProps={{
                 readOnly: true,
@@ -63,6 +66,9 @@ export default function AddressForm(props) {
             id="condition"
             name="condition"
             label="Condition"
+            multiline
+            rows={1}
+            rowsMax={1}
             fullWidth
             InputProps={{
                 readOnly: true,

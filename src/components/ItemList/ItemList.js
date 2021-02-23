@@ -41,7 +41,7 @@ export default class ItemList extends React.Component {
             <Grid container spacing={0.2} justify="center">
             {this.state.items.map(item => 
                 <Grid item xs={2} >
-                    <Link to={'/offers/'+item.id}>
+                    <Link to={'/offer?id='+item.id}>
                         <Tile1 content={ { 'name':item.toolName, 'amount':item.toolQuality } }/>
                     </Link>
                 </Grid>

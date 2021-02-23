@@ -10,7 +10,8 @@ import {
   NewOfferPage,
   SignUpPage,
   SignInPage,
-  ItemListPage
+  ItemListPage,
+  OfferPage
 } from '../../pages'
 import Store from './App.store'
 
@@ -54,6 +55,10 @@ const AppRoutes = () => {
 
         <Route path="/items">
           <ItemListPage />
+        </Route>
+
+        <Route path="/offer">
+          <OfferPage />
         </Route>
 
         <Route path="/">
