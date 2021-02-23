@@ -18,13 +18,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ControlledOpenSelect(props) {
+export default function ControlledOpenSelect({setCategory}) {
   const classes = useStyles();
   const [val, setValue] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    setCategory(event.target.value)
   };
 
   const handleClose = () => {
@@ -35,10 +36,6 @@ export default function ControlledOpenSelect(props) {
     setOpen(true);
   };
 
-  // const content = [
-  //   { id: '0', name: 'Łopaty'},
-  //   { id: '1', name: 'Opiaty'}
-  // ];
   const [content, setContent] = React.useState([]);
   useEffect(() =>{
     axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')

@@ -18,13 +18,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ControlledOpenSelect(props) {
+export default function ControlledOpenSelect({setQuality}) {
   const classes = useStyles();
   const [val, setValue] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    setQuality(event.target.value);
   };
 
   const handleClose = () => {

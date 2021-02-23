@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useForm } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,12 +15,26 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   
-export default function AddressForm() {
+export default function AddressForm({ parentCallback }) {
     const classes = useStyles();
     const [value, setValue] = React.useState('Controlled');
-
-    function handleSubmit(){
-      console.log('submitting')
+    //const [form, handleSubmit] = useForm();
+    const [name, setName] = useState('123');
+    const [description, setDescription] = useState();
+    const [itemCategory, setItemCategory] = useState();
+    const [itemQuality, setItemQuality] = useState();
+    
+    function handleCategoryChange(value){
+      setItemCategory(value);
+    }
+    function handleQualityChange(value){
+      setItemQuality(value);
+    }
+    const handleSubmit = data =>{
+      console.log(name)
+      console.log('submittiasdasdnag')
+      console.log(itemCategory)
+      console.log(itemQuality)
     }
 
   return (
@@ -32,6 +46,8 @@ export default function AddressForm() {
           <TextField
             variant="outlined"
             required
+            value={name}
+            onChange={e => setName(e.target.value)}
             id="name"
             name="name"
             label="Name of the offer"
@@ -42,6 +58,8 @@ export default function AddressForm() {
           <TextField
             required
             variant="outlined"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
             id="description"
             name="description"
             label="Description of the item"
@@ -52,12 +70,12 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={6}>
-        <CategorySelector />
-        <QualitySelector />
+        <CategorySelector setCategory={handleCategoryChange}/>
+        <QualitySelector setQuality={handleQualityChange}/>
         </Grid>
         <Grid item xs={6}>
             <br></br><br></br><br></br><br></br><br></br><br></br>
-        <Button  size = 'large' variant = "contained" type="button" fullWidth  color = "primary" onClick={handleSubmit}> Add</Button>
+        <Button onClick={handleSubmit} size = 'large' variant = "contained" type="button" fullWidth  color = "primary" > Add</Button>
         </Grid>
         </Grid>
     </React.Fragment>
