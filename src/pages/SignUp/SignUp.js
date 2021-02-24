@@ -58,7 +58,7 @@ export default function Index() {
       email: email,
       password: password})
     .then(res => {
-      history.push('/account');
+      history.push('/signin');
       // console.log("Success")
       // console.log(res.data)
     },
