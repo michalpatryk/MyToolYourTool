@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import axiosAPI from '../../API/ourAPI/API';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Checkout() {
   const classes = useStyles();
+  
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -59,16 +61,6 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
 
-  useEffect(() =>{
-    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/categories')
-    .then(res => {
-
-      console.log(res.data)
-    })
-    .catch(error => {
-
-    })
-  },[])
 
   return (
     
