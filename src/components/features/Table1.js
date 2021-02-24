@@ -1,5 +1,5 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosAPI from '../../API/ourAPI/API';
 import PropTypes from 'prop-types';
 import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -117,7 +117,7 @@ export default function CustomPaginationActionsTable() {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  const [items, setItems] = React.useState([]);
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
@@ -129,6 +129,17 @@ export default function CustomPaginationActionsTable() {
     setPage(0);
   };
 
+  useEffect(() =>{
+    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/reviews')
+    .then(res => {
+      setItems(res.data);
+      console.log(items);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  },[])
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
@@ -138,15 +149,17 @@ export default function CustomPaginationActionsTable() {
             <StyledTableCell align="right">Rate</StyledTableCell>
           </TableRow>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <StyledTableRow key={row.name}>
+            // ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            // : rows
+            ? items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : items
+          ).map((item) => (
+            <StyledTableRow key={item.name}>
               <TableCell component="th" scope="row">
-                {row.comment}
+                {item.opinion}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.rate}
+                {item.rating}
               </TableCell>
             </StyledTableRow>
           ))}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { useHistory} from "react-router-dom";
 import Store from '../../components/App/App.store'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {VerticalNav1} from '../../components/vertical-navs/VerticalNav1';
+import VerticalNav1 from '../../components/vertical-navs/VerticalNav1';
 import Score1 from '../../components/features/Score1';
 import Table1 from '../../components/features/Table1';
 import Title1 from '../../components/features/Title1';
@@ -105,6 +106,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Myaccount() {
   const classes = useStyles();
+  const history = useHistory();
+  const store = Store.useStore()
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -117,13 +120,25 @@ export default function Myaccount() {
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
 
+  function deleteAccount(){
+    axiosAPI.delete('https://my-tool-your-tool-dev.herokuapp.com/users/delete-me')
+    .then(res => {
+      store.set('authToken')('');
+      axiosAPI.defaults.headers.common['Authorization'] = '';
+      history.push('/');
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   useEffect(() =>{
     axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/users/me')
     .then(res => {
       setFirstName(res.data.firstName)
       setLastName(res.data.lastName)
       setEmail(res.data.email)
-      console.log(res.data)
+      //console.log(res.data)
     })
     .catch(error => {
       setFirstName('Błąd ładowania danych');
@@ -161,7 +176,7 @@ export default function Myaccount() {
           </IconButton>
         </div>
         <Divider />
-        <List>{VerticalNav1}</List>
+        <List><VerticalNav1/></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -181,7 +196,7 @@ export default function Myaccount() {
               <Grid container spacing={3}>
               <Grid item xs={9}> </Grid>
               <Grid item xs={3} >
-              <Button  type="submit" fullWidth  variant="contained"  color="secondary"  className={classes.submit} > Delete account </Button> 
+              <Button  type="submit" fullWidth  variant="contained"  color="secondary"  className={classes.submit} onClick={deleteAccount}> Delete account </Button> 
               </Grid> </Grid>
               </Paper>
             </Grid>

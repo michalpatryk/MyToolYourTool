@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import HorizontalNav2 from '../../components/horizontal-navs/HorizontalNav2';
+import { useHistory} from "react-router-dom";
+
 //import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Index() {
-  
+  const history = useHistory();
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState();
@@ -56,8 +58,9 @@ export default function Index() {
       email: email,
       password: password})
     .then(res => {
-      console.log("Success")
-      console.log(res.data)
+      history.push('/signin');
+      // console.log("Success")
+      // console.log(res.data)
     },
     console.log("Failure"))
 
