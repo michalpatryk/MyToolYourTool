@@ -63,7 +63,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+function borrow(id) {
 
+}
 
 export default function OfferPage() {
   const classes = useStyles();
@@ -176,7 +178,7 @@ export default function OfferPage() {
          <Grid container spacing={3}>
         <Grid item xs={9}></Grid>
         <Grid item xs={3}>
-        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary" href="/borrow"> Borrow</Button>
+        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary" onClick={borrow(queryParams.id)}> Borrow</Button>
         </Grid>
         </Grid>
         </Paper>
