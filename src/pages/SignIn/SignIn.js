@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory} from "react-router-dom";
+
 import Store from '../../components/App/App.store'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -37,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInPage() {
+  const history = useHistory();
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -54,6 +57,7 @@ export default function SignInPage() {
       //axios.defaults.headers.common['Authorization'] = res.data;  //dziala
       //axios.defaults.headers.common['Authorization'] = store.get('authToken') //nie dziala
       axiosAPI.defaults.headers.common['Authorization'] = res.data;
+      history.push('/account');
     },
     console.log("Failure"))
   }

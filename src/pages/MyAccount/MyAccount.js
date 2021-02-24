@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {VerticalNav1} from '../../components/vertical-navs/VerticalNav1';
+import VerticalNav1 from '../../components/vertical-navs/VerticalNav1';
 import Score1 from '../../components/features/Score1';
 import Table1 from '../../components/features/Table1';
 import Title1 from '../../components/features/Title1';
@@ -161,7 +161,7 @@ export default function Myaccount() {
           </IconButton>
         </div>
         <Divider />
-        <List>{VerticalNav1}</List>
+        <List><VerticalNav1/></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
