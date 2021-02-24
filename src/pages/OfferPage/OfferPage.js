@@ -172,7 +172,7 @@ export default function OfferPage() {
         <Grid item xs={6} direction="column" alignItems="center" justify="center" style={{ minHeight: '60vh' }} >
         <CardMedia
         className={classes.media}
-        image="https://i.imgur.com/jQBC7AP.jpeg"
+        image=""
         title="Object"
          />
          
