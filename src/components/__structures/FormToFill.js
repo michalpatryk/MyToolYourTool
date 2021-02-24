@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory} from "react-router-dom";
 import axiosAPI from '../../API/ourAPI/API';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -18,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
   
 export default function AddressForm({ parentCallback }) {
     const classes = useStyles();
-    const [name, setName] = useState('123');
+    const history = useHistory();
+    const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [itemCategory, setItemCategory] = useState();
     const [itemQuality, setItemQuality] = useState();
@@ -39,6 +41,7 @@ export default function AddressForm({ parentCallback }) {
       })
       .then(res => {
         console.log('Dodano ofertę!')
+        history.push('/account/myOffers')
       })
       .catch(err => {
         console.log(err.value)
