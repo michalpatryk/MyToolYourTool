@@ -176,7 +176,7 @@ export default function OfferPage() {
          <Grid container spacing={3}>
         <Grid item xs={9}></Grid>
         <Grid item xs={3}>
-        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary"> Borrow</Button>
+        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary" href="/borrow"> Borrow</Button>
         </Grid>
         </Grid>
         </Paper>
