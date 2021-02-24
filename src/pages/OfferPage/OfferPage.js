@@ -13,9 +13,16 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 
-import { useLocation } from 'react-router-dom';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+import { useLocation, Redirect } from 'react-router-dom';
 import axiosAPI from '../../API/ourAPI/API';
 import queryString from 'query-string';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -60,16 +67,23 @@ const useStyles = makeStyles((theme) => ({
   },
   user: {
     background:"#fff"
+  },
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   }
 }));
 
-function borrow(id) {
-
-}
+var severity;
+var message;
 
 export default function OfferPage() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const [open, setOpen] = React.useState(false);
 
   const [value, setValue] = React.useState('Controlled');
 
@@ -88,6 +102,18 @@ export default function OfferPage() {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const { search } = useLocation();
@@ -119,6 +145,8 @@ export default function OfferPage() {
       }
     );
   },[]);
+
+  
 
   //const login = offer.lender.firstName + ' ' + offer.lender.lastName;
   return (
@@ -178,7 +206,25 @@ export default function OfferPage() {
          <Grid container spacing={3}>
         <Grid item xs={9}></Grid>
         <Grid item xs={3}>
-        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary" onClick={borrow(queryParams.id)}> Borrow</Button>
+        <Button  size = 'large' variant = "contained" type="submit" fullWidth  color = "primary" onClick={() => {
+          const requestUrl = 'https://my-tool-your-tool-dev.herokuapp.com/reservations/add-reservation/'+queryParams.id;
+          axiosAPI.post(requestUrl)
+            .then(() => {
+              severity="success";
+              message="Item added to the Borrowing Cart";
+              handleClick();
+            })
+            .catch(() => {
+              severity="error";
+              message="Unable to borrow the item";
+              handleClick();
+            });
+        }}> Borrow</Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={severity}>
+          {message}
+        </Alert>
+      </Snackbar>
         </Grid>
         </Grid>
         </Paper>
