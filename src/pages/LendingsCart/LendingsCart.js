@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import VerticalNav1 from '../../components/vertical-navs/VerticalNav1';
-import Table3 from '../../components/features/Table4_lendingsCart';
+import Table3 from '../../components/features/Table4_lendingsCartHooks';
 import Title1 from '../../components/features/Title1';
 import Button from '@material-ui/core/Button';
 
