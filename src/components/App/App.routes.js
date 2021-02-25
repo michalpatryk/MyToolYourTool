@@ -8,6 +8,8 @@ import {
   MyAccountPage,
   MyOffersPage,
   NewOfferPage,
+  BorrowingsCartPage,
+  LendingsCartPage,
   SignUpPage,
   SignInPage,
   ItemListPage,
@@ -44,10 +46,17 @@ const AppRoutes = () => {
             <MyOffersPage/>
         </Route>
 
+        <Route path="/account/borrowingsCart">
+            <BorrowingsCartPage/>
+        </Route>
+
+        <Route path="/account/lendingsCart">
+            <LendingsCartPage/>
+        </Route>
+
         <Route path="/account">
           <MyAccountPage/>
         </Route>
-
 
         <Route path="/categories">
           <CategoryPage/>
