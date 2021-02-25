@@ -46,7 +46,7 @@ export default function VerticalNav1(props) {
         </ListItemIcon>
         <ListItemText primary="My offers " />
       </ListItem>
-      <ListItem button to="account/lendingsCart" component={RouterLink}>
+      <ListItem button to="/account/lendingsCart" component={RouterLink}>
         <ListItemIcon>
           <Store />
         </ListItemIcon>
