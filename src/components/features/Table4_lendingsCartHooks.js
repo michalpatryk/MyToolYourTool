@@ -130,14 +130,35 @@ export default function CustomPaginationActionsTable() {
     setPage(0);
   };
 
-  function handleReview(){
+  function handleReview(reservationId){
     console.log('Review placeholder');
+  }
+  
+  function handleLending(reservationId){//working
+    axiosAPI.post('https://my-tool-your-tool-dev.herokuapp.com/reservations/choose-reservation/' + reservationId)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  function handleReturning(reservationId){
+    axiosAPI.post('https://my-tool-your-tool-dev.herokuapp.com/reservations/check-returned-reservation/' + reservationId)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    console.log('Returning placeholder');
   }
 
   const [borrowings, setBorrowings] = useState();
   useEffect(() => {
     setItems([]);
-    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/reservations/my-reservations')
+    axiosAPI.get('https://my-tool-your-tool-dev.herokuapp.com/reservations/my-loans')
       .then(res => {
         res.data.map((key, index) => {
           console.log(res.data)
@@ -146,12 +167,19 @@ export default function CustomPaginationActionsTable() {
               
               setItems(items.concat([{
                 id: index,
+                reservationId: key.id,
                 toolName: res2.data.toolName,
-                canReview: key.returned,
+                borrowerEmail: key.borrowerEmail,
+                borrowerFullName: key.borrowerFullName,
+                canChooseToLend: !key.chosen,
+                isToolReturned: key.returned,
+                canReview: key.reviewedBorrower,
               }]))
-              console.log(key);
+              console.log(items)
+
             })
             .catch(err => {
+              console.log(err);
             })
         })
       })
@@ -166,6 +194,8 @@ export default function CustomPaginationActionsTable() {
         <TableBody>
         <TableRow>
             <StyledTableCell>Offer</StyledTableCell>
+            <StyledTableCell align="right">Borrowers data</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right">Review</StyledTableCell>
@@ -176,12 +206,34 @@ export default function CustomPaginationActionsTable() {
           ).map((item) => (
             <StyledTableRow key={item.id}>
             <TableCell numeric component="a" >{item.toolName}</TableCell>
-            <TableCell numeric component="a"  align="right" ></TableCell>
-            <TableCell numeric component="a"  align="right" ></TableCell>
+            <TableCell numeric component="a" >{item.borrowerFullName}</TableCell>
+            <TableCell numeric component="a" >{item.borrowerEmail}</TableCell>
+            <TableCell numeric component="a"  align="right" >
+              { item.canChooseToLend
+                ? <Button  type="button" fullWidth  variant="contained"  color="secondary"  className={classes.submit} onClick={() => handleLending(item.reservationId)}> Lend item </Button> 
+                : ( !item.isToolReturned
+                  ? 'Item in lending'
+                  : ( item.canReview 
+                    ? 'Awaiting review'
+                    : '')
+                  )
+              }
+            </TableCell>
+            <TableCell numeric component="a"  align="right" >
+              { item.canChooseToLend
+                ? '' 
+                : ( !item.isToolReturned 
+                  ? <Button  type="button" fullWidth  variant="contained"  color="secondary"  className={classes.submit} onClick={() => handleReturning(item.reservationId)}> Confirm return </Button> 
+                  : ( item.canReview 
+                    ? 'Awaiting review'
+                    : '')
+                  )
+              }
+            </TableCell>
             <TableCell style={{ width: 160 }} align="right"> 
               { item.canReview 
-                  ? <Button  type="button" fullWidth  variant="contained"  color="secondary"  className={classes.submit} onClick={handleReview}> Review </Button> 
-                  : 'Awaiting'  
+                  ? <Button  type="button" fullWidth  variant="contained"  color="secondary"  className={classes.submit} onClick={() => handleReview(item.reservationId)}> Review </Button> 
+                  : 'Awaiting review'  
               } 
             </TableCell>
             </StyledTableRow>
